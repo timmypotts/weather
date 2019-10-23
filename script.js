@@ -4,7 +4,7 @@ var time = moment().format("dddd MMMM Do");
 
 function currentCity(x) {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + x + ",US&units=imperial&appid=" + key;
-    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast/daily?q=Denver,US&units=imperial&appid=" + key;
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + x + ",US&units=imperial&appid=" + key;
 
     $.ajax({
         url: queryURL,
@@ -18,6 +18,23 @@ function currentCity(x) {
         $(".humidity").text("Humidity: " + response.main.humidity + " %");
         $(".wind").text("Wind Speed: " + response.wind.speed + " mph");
 });
+
+$.ajax({
+    url: forecastURL,
+    method: "GET"
+   }).then(function(response){
+
+
+   console.log(forecastURL);
+   console.log(response);
+    $("#day1").html("<div class='card-header'>" + moment().add(1, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["5"].main.temp + "<br> Humidity:" + response.list["5"].main.humidity + "<br> <img id='#icon1' src='https://openweathermap.org/img/wn/" + response.list["5"].weather['0'].icon + "@2x.png'></img>");
+    //$('#icon1').attr("src", "http://openweathermap.org/img/wn/"+ response.list["5"].weather['0'].icon);
+    $("#day2").html("<div class='card-header'>" + moment().add(2, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["13"].main.temp + "<br/> Humidity:" + response.list["13"].main.humidity + "<br> <img id='#icon1' src='https://openweathermap.org/img/wn/" + response.list["13"].weather['0'].icon + "@2x.png'></img>");
+    $("#day3").html("<div class='card-header'>" + moment().add(3, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["21"].main.temp + "<br/> Humidity:" + response.list["21"].main.humidity + "<br> <img id='#icon1' src='https://openweathermap.org/img/wn/" + response.list["21"].weather['0'].icon + "@2x.png'></img>");
+    $("#day4").html("<div class='card-header'>" + moment().add(4, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["29"].main.temp + "<br/> Humidity:" + response.list["29"].main.humidity + "<br> <img id='#icon1' src='https://openweathermap.org/img/wn/" + response.list["29"].weather['0'].icon + "@2x.png'></img>");
+    $("#day5").html("<div class='card-header'>" + moment().add(5, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["37"].main.temp + "<br/> Humidity:" + response.list["37"].main.humidity + "<br> <img id='#icon1' src='https://openweathermap.org/img/wn/" + response.list["37"].weather['0'].icon + "@2x.png'></img>");
+
+   });
 }
 
 
@@ -54,16 +71,16 @@ $.ajax({
       
    console.log(forecastURL);
    console.log(response);
-    $("#day1").html("<div class='card-header'>" + moment().add(1, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["5"].main.temp + "<br> Humidity:" + response.list["5"].main.humidity + "<br> <img id='#icon1' src='http://openweathermap.org/img/wn/" + response.list["5"].weather['0'].icon + "@2x.png'></img>");
-    //$('#icon1').attr("src", "http://openweathermap.org/img/wn/"+ response.list["5"].weather['0'].icon);
-    $("#day2").html("<div class='card-header'>" + moment().add(2, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["13"].main.temp + "<br/> Humidity:" + response.list["13"].main.humidity + "<br> <img id='#icon1' src='http://openweathermap.org/img/wn/" + response.list["13"].weather['0'].icon + "@2x.png'></img>");
-   //$("#box2").append(date2);
-    $("#day3").html("<div class='card-header'>" + moment().add(3, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["21"].main.temp + "<br/> Humidity:" + response.list["21"].main.humidity + "<br> <img id='#icon1' src='http://openweathermap.org/img/wn/" + response.list["21"].weather['0'].icon + "@2x.png'></img>");
-   //$("#box3").append(date3);
-    $("#day4").html("<div class='card-header'>" + moment().add(4, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["29"].main.temp + "<br/> Humidity:" + response.list["29"].main.humidity + "<br> <img id='#icon1' src='http://openweathermap.org/img/wn/" + response.list["29"].weather['0'].icon + "@2x.png'></img>");
-   //$("#box4").append(date4);
-    $("#day5").html("<div class='card-header'>" + moment().add(5, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["37"].main.temp + "<br/> Humidity:" + response.list["37"].main.humidity + "<br> <img id='#icon1' src='http://openweathermap.org/img/wn/" + response.list["37"].weather['0'].icon + "@2x.png'></img>");
-   //$("#box5").append(date5);
+    $("#day1").html("<div class='card-header'>" + moment().add(1, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["5"].main.temp + "<br> Humidity:" + response.list["5"].main.humidity + "<br> <img id='#icon1' src='https://openweathermap.org/img/wn/" + response.list["5"].weather['0'].icon + "@2x.png'></img>");
+
+    $("#day2").html("<div class='card-header'>" + moment().add(2, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["13"].main.temp + "<br/> Humidity:" + response.list["13"].main.humidity + "<br> <img id='#icon1' src='https://openweathermap.org/img/wn/" + response.list["13"].weather['0'].icon + "@2x.png'></img>");
+
+    $("#day3").html("<div class='card-header'>" + moment().add(3, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["21"].main.temp + "<br/> Humidity:" + response.list["21"].main.humidity + "<br> <img id='#icon1' src='https://openweathermap.org/img/wn/" + response.list["21"].weather['0'].icon + "@2x.png'></img>");
+
+    $("#day4").html("<div class='card-header'>" + moment().add(4, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["29"].main.temp + "<br/> Humidity:" + response.list["29"].main.humidity + "<br> <img id='#icon1' src='https://openweathermap.org/img/wn/" + response.list["29"].weather['0'].icon + "@2x.png'></img>");
+
+    $("#day5").html("<div class='card-header'>" + moment().add(5, 'days').format('MMM D YYYY') + "</div> Temperature:" + response.list["37"].main.temp + "<br/> Humidity:" + response.list["37"].main.humidity + "<br> <img id='#icon1' src='https://openweathermap.org/img/wn/" + response.list["37"].weather['0'].icon + "@2x.png'></img>");
+
    });
 }
 
